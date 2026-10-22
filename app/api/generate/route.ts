@@ -92,7 +92,7 @@ FORMATO DE RESPUESTA (JSON estricto, sin markdown, sin texto extra):
 }`;
 
     const message = await client.messages.create({
-      model: "claude-3-5-sonnet-20241022",
+      model: "claude-sonnet-4-7",
       max_tokens: 2000,
       messages: [
         {
