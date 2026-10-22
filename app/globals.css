@@ -1,26 +1,235 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --lila: #a78bca;
+  --lila-profundo: #79639b;
+  --lila-suave: #c4b0e0;
+  --negro: #17151a;
+  --negro-suave: #1f1c23;
+  --negro-medio: #2a2630;
+  --tierra: #806a58;
+  --tierra-claro: #9a8070;
+  --arena: #e9ded0;
+  --crema: #f7f3ef;
+  --blanco: #ffffff;
+  --linea: rgba(167, 139, 202, 0.15);
+  --linea-suave: rgba(255, 255, 255, 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--negro);
+  color: var(--crema);
+  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.font-display {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--lila-profundo),
+    var(--lila),
+    var(--lila-suave)
+  );
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  background: var(--negro-suave);
+  border: 1px solid var(--linea);
+  color: var(--crema);
+  padding: 14px 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+  resize: vertical;
+}
+
+.input-field:focus {
+  border-color: var(--lila);
+}
+
+.input-field::placeholder {
+  color: var(--tierra-claro);
+  opacity: 0.6;
+}
+
+/* Button styles */
+.btn-primary {
+  background: var(--lila);
+  color: var(--negro);
+  border: none;
+  padding: 16px 36px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary:hover {
+  background: var(--lila-suave);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--tierra-claro);
+  border: 1px solid rgba(128, 106, 88, 0.3);
+  padding: 14px 28px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 0;
+}
+
+.btn-secondary:hover {
+  border-color: var(--tierra);
+  color: var(--arena);
+}
+
+/* Pilar card */
+.pilar-card {
+  border: 1px solid var(--linea);
+  background: var(--negro-suave);
+  padding: 36px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.pilar-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--lila-profundo), var(--lila));
+}
+
+.pilar-card:hover {
+  border-color: rgba(167, 139, 202, 0.3);
+}
+
+/* Loading animation */
+@keyframes pulse-lila {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-lila {
+  animation: pulse-lila 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--negro);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--linea);
+  border-radius: 3px;
+}
+
+/* Print styles for PDF */
+@media print {
+  body {
+    background: white;
+    color: #17151a;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .pilar-card {
+    break-inside: avoid;
+    border-color: #ccc;
+  }
+}
+
+/* Reveal animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: fadeSlideUp 0.5s ease forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+  opacity: 0;
 }
