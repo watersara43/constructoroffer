@@ -9,6 +9,7 @@ import {
   GeneratedResult,
 } from "./types";
 import ProgressBar from "./components/ProgressBar";
+import WhatsAppButton from "./components/WhatsAppButton";
 import StepBienvenida from "./components/StepBienvenida";
 import StepPerfil from "./components/StepPerfil";
 import StepProducto from "./components/StepProducto";
@@ -178,10 +179,13 @@ export default function Home() {
 
         {step === "generando" && <StepGenerando />}
 
-        {step === "resultado" && result && (
+          {step === "resultado" && result && (
           <StepResultado result={result} onReset={reset} />
         )}
       </main>
+
+      {/* WhatsApp floating button */}
+      <WhatsAppButton />
     </>
   );
 }

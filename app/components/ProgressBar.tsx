@@ -53,19 +53,17 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
           gap: "8px",
         }}
       >
-        {/* Logo / Brand */}
-        <span
+        {/* Logo */}
+        <img
+          src="https://raw.githubusercontent.com/watersara43/manifiesto-a-fondo/main/logo-a-fondo.png"
+          alt="A Fondo — Sara Castro"
           style={{
-            fontSize: "12px",
-            fontWeight: 500,
-            color: "var(--lila)",
-            letterSpacing: "0.08em",
+            height: "28px",
+            width: "auto",
             flexShrink: 0,
-            fontFamily: "DM Sans, sans-serif",
+            opacity: 0.9,
           }}
-        >
-          A FONDO
-        </span>
+        />
 
         {/* Steps */}
         <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
